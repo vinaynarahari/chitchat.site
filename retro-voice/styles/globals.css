@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Press Start 2P', monospace;
+  background: #f8f8f8;
+  color: #111;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><rect width="32" height="32" fill="black"/></svg>') 16 16, auto;
+}
+
+/* Scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 4px);
+  z-index: 9999;
+  opacity: 0.25;
+  animation: flicker 2s infinite steps(2);
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.35; }
+}
+
+:focus {
+  outline: 2px dashed #111;
+  outline-offset: 2px;
+} 
